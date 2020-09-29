@@ -10,6 +10,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   File file;
+  String urlAvatar, name, lastName, gender, age, birth, email, password, type;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +30,21 @@ class _RegisterState extends State<Register> {
               buildEmail(),
               buildPassword(),
               buildType(),
+              buildRaisedButton()
             ],
           ),
         ),
       ),
     );
   }
+
+  Container buildRaisedButton() => Container(
+        width: MediaQuery.of(context).size.width,
+        child: RaisedButton.icon(color: Colors.deepOrange,
+            onPressed: (){},
+            icon: Icon(Icons.cloud_upload, color: Colors.white,),
+            label: Text('Register', style: TextStyle(color: Colors.white),)),
+      );
 
   Container buildCamera() {
     return Container(
@@ -69,7 +79,7 @@ class _RegisterState extends State<Register> {
     return Container(
       width: 250,
       height: 250,
-      child: file == null ? Image.asset('images/avatar.png') : Image.file(file) ,
+      child: file == null ? Image.asset('images/avatar.png') : Image.file(file),
     );
   }
 
@@ -78,6 +88,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        onChanged: (value) => name = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Name :',
@@ -92,6 +103,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        onChanged: (value) => lastName = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Last Name :',
@@ -106,6 +118,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        onChanged: (value) => gender = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Gender :',
@@ -120,6 +133,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        onChanged: (value) => age = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Age :',
@@ -134,6 +148,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        onChanged: (value) => birth = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Birth :',
@@ -148,6 +163,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        onChanged: (value) => email = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Email :',
@@ -162,6 +178,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        onChanged: (value) => password = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Password :',
@@ -176,6 +193,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        onChanged: (value) => type = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: 'Type :',
