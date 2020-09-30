@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ungmoopa/utility/normal_dialog.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -40,10 +41,38 @@ class _RegisterState extends State<Register> {
 
   Container buildRaisedButton() => Container(
         width: MediaQuery.of(context).size.width,
-        child: RaisedButton.icon(color: Colors.deepOrange,
-            onPressed: (){},
-            icon: Icon(Icons.cloud_upload, color: Colors.white,),
-            label: Text('Register', style: TextStyle(color: Colors.white),)),
+        child: RaisedButton.icon(
+            color: Colors.deepOrange,
+            onPressed: () {
+              if (file == null) {
+                normalDialog(context, 'Please Choose Image');
+              } else if (name == null ||
+                  name.isEmpty ||
+                  lastName == null ||
+                  lastName.isEmpty ||
+                  gender == null ||
+                  gender.isEmpty ||
+                  age == null ||
+                  age.isEmpty ||
+                  birth == null ||
+                  birth.isEmpty ||
+                  email == null ||
+                  email.isEmpty ||
+                  password == null ||
+                  password.isEmpty ||
+                  type == null ||
+                  type.isEmpty) {
+                normalDialog(context, 'Have Space ? Please Fill Every Blank');
+              } else {}
+            },
+            icon: Icon(
+              Icons.cloud_upload,
+              color: Colors.white,
+            ),
+            label: Text(
+              'Register',
+              style: TextStyle(color: Colors.white),
+            )),
       );
 
   Container buildCamera() {
@@ -132,7 +161,7 @@ class _RegisterState extends State<Register> {
     return Container(
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
-      child: TextField(
+      child: TextField(keyboardType: TextInputType.number,
         onChanged: (value) => age = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
