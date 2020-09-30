@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ungmoopa/utility/normal_dialog.dart';
@@ -63,7 +64,9 @@ class _RegisterState extends State<Register> {
                   type == null ||
                   type.isEmpty) {
                 normalDialog(context, 'Have Space ? Please Fill Every Blank');
-              } else {}
+              } else {
+                registerThread();
+              }
             },
             icon: Icon(
               Icons.cloud_upload,
@@ -161,7 +164,8 @@ class _RegisterState extends State<Register> {
     return Container(
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
-      child: TextField(keyboardType: TextInputType.number,
+      child: TextField(
+        keyboardType: TextInputType.number,
         onChanged: (value) => age = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
@@ -192,6 +196,7 @@ class _RegisterState extends State<Register> {
       margin: EdgeInsets.only(top: 16, bottom: 16),
       width: 250,
       child: TextField(
+        keyboardType: TextInputType.emailAddress,
         onChanged: (value) => email = value.trim(),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
@@ -230,5 +235,11 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  Future<Null> registerThread() async {
+    await Firebase.initializeApp().then((value) {
+      print('Connected Success');
+    });
   }
 }

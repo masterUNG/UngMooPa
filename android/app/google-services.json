@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "897428024449",
+    "firebase_url": "https://ungmoopa.firebaseio.com",
+    "project_id": "ungmoopa",
+    "storage_bucket": "ungmoopa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897428024449:android:354172503e89b453807180",
+        "android_client_info": {
+          "package_name": "com.flutterthailand.ungmoopa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897428024449-ich0kkh6ntq88csnuj7qv7ktaeek7jp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBvLSP6JBuqqLKE_GtlHfwiIzkYHG559E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897428024449-ich0kkh6ntq88csnuj7qv7ktaeek7jp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
