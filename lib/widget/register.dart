@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ungmoopa/utility/normal_dialog.dart';
@@ -238,8 +241,47 @@ class _RegisterState extends State<Register> {
   }
 
   Future<Null> registerThread() async {
-    await Firebase.initializeApp().then((value) {
+    await Firebase.initializeApp().then((value) async {
       print('Connected Success');
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) async {
+        String uid = value.user.uid;
+        print('uid ==>> $uid');
+        StorageReference reference =
+            FirebaseStorage.instance.ref().child('Avatar/$uid.jpg');
+        StorageUploadTask task = reference.putFile(file);
+        String urlAvatar = await (await task.onComplete).ref.getDownloadURL();
+        print('urlAvatar = $urlAvatar');
+
+        Map<String, dynamic> typeData = Map();
+        typeData['Type'] = type;
+        await FirebaseFirestore.instance
+            .collection('Type')
+            .doc(uid)
+            .set(typeData);
+
+        Map<String, dynamic> userData = Map();
+        userData['UrlAvatar'] = urlAvatar;
+        userData['Name'] = name;
+        userData['LastName'] = lastName;
+        userData['Gender'] = gender;
+        userData['Age'] = age;
+        userData['Birth'] = birth;
+        userData['Email'] = email;
+        userData['Password'] = password;
+        userData['Type'] = type;
+
+        await FirebaseFirestore.instance
+            .collection('User')
+            .doc(uid)
+            .set(userData)
+            .then((value) => Navigator.pop(context));
+            
+        });
+      }).catchError((value) {
+        normalDialog(context, value.message);
+      });
     });
   }
 }
