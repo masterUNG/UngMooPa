@@ -282,6 +282,7 @@ class _RegisterState extends State<Register> {
       }).catchError((value) {
         normalDialog(context, value.message);
       });
-    });
+    
   }
+  
 }
