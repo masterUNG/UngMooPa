@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ungmoopa/widget/authen.dart';
 
 class MyStyle {
+  
   Widget mySignOut(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
